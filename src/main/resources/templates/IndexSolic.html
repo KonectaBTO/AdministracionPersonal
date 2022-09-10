@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="">EMPLEADOS</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container mt-4">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>SOLICITUD</th>
+				</tr>
+				<tr>
+					<th>ID</th>
+					<th>CODIGO</th>
+					<th>DESCRIPCION</th>
+					<th>RESUMEN</th>
+					<th>ID_EMPLEADO</th>
+					<th>ACCIONES</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="solicitud:${solicitudes}">
+					<td th:text="${solicitud.id}"></td>
+					<td th:text="${solicitud.codigo}"></td>
+					<td th:text="${solicitud.descripcion}"></td>
+					<td th:text="${solicitud.resumen}"></td>
+					<td th:text="${solicitud.id_empleado.nombre}"></td>
+					<td><a th:href="@{/editarSolic/}+${solicitud.id}"
+						class="btn btn-warning">Editar</a> <a
+						th:onclick="eliminarSolic([[${solicitud.id}]])"
+						class="btn btn-danger">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/newSolic}" class="btn btn-primary">Nuevo</a> <br>
+		<br>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="funcionesSolic.js"></script>
+</body>
+</html>
